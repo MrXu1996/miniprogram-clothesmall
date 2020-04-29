@@ -1,0 +1,26 @@
+<!--pages/home/home.wxml-->
+<!-- 1.展示轮播图 -->
+<w-swiper list="{{banners}}" swiper="swiper"></w-swiper>
+
+<!-- 2.推荐数据的展示 -->
+<!-- <view class="recommend">
+  <block wx:for="{{recommends}}" wx:key="{{index}}">
+    <view class="recommend-item">
+      <image src="{{item.image}}"></image>
+      <text>{{item.title}}</text>
+    </view>
+  </block>
+</view> -->
+<w-recommend list="{{recommends}}"></w-recommend>
+
+<!-- 3.本周流行 -->
+<view class="popular">
+	<image src="/assets/images/home/recommend_bg.jpg" mode="widthFix"></image>
+</view>
+
+<!-- 4.tab栏切换 -->
+<w-tab-control  titles="{{titles}}" 
+                bind:itemClick="tabControlClick" />
+
+<!-- 5.展示商品数据 -->
+<w-goods goods="{{goods[currentType].list}}"></w-goods>

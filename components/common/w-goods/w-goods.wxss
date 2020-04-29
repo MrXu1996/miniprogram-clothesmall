@@ -1,0 +1,12 @@
+/* components/common/w-goods/w-goods.wxss */
+.goods {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 8rpx;
+}
+.item {
+  width: 48%;
+  margin-top: 20rpx;
+  position: relative;
+}
