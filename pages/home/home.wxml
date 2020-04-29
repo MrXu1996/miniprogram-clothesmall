@@ -20,7 +20,15 @@
 
 <!-- 4.tab栏切换 -->
 <w-tab-control  titles="{{titles}}" 
-                bind:itemClick="tabControlClick" />
+                id= "tab-control"
+                bind:itemClick="tabControlClick"
+                class="{{isTabFixed ? 'fixed' : ''}}" />
+
+<w-tab-control  titles="{{titles}}" 
+                wx:if="{{isTabFixed}}" />
 
 <!-- 5.展示商品数据 -->
 <w-goods goods="{{goods[currentType].list}}"></w-goods>
+
+<!-- 6.回到顶部 -->
+<w-back-top wx:if="{{isShow}}"/>

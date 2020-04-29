@@ -1,6 +1,8 @@
 // pages/home/home.js
 import {getMultiData, getGoodsData} from '../../service/home.js'
 
+const TOP_DISTANCE = 800
+
 Page({
 
   /**
@@ -16,7 +18,10 @@ Page({
       'sell': {page:0, list: []},
     },
     currentType: 'pop',
-    types: ['pop', 'new', 'sell']
+    types: ['pop', 'new', 'sell'],
+    isShow: false,
+    isTabFixed: false,
+    tabScrollTop: 0
   },
 
   // -----------------网络请求函数----------------------
@@ -60,6 +65,15 @@ Page({
     })
   },
 
+  onShow: function () {
+    setTimeout(() => {
+      wx.createSelectorQuery().select('#tab-control').boundingClientRect(rect => {
+        console.log(rect);
+        this.data.tabScrollTop = rect.top
+      }).exec()
+    },1000)
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -74,41 +88,6 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
@@ -116,10 +95,22 @@ Page({
     this._getGoodsData(this.data.currentType)
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+  onPageScroll: function(options) {
+    const scrollTop = options.scrollTop
 
+    const flag1 = scrollTop >= TOP_DISTANCE
+    if(flag1 != this.data.isShow) {
+      this.setData({
+        isShow: flag1
+      })
+    }
+
+    const flag2 = scrollTop >= this.data.tabScrollTop
+    if(flag2 != this.data.isTabFixed) {
+      this.setData({
+        isTabFixed: flag2
+      })
+    }
   }
+
 })

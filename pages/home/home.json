@@ -3,6 +3,7 @@
     "w-swiper": "/components/common/w-swiper/w-swiper",
     "w-tab-control": "/components/common/w-tab-control/w-tab-control",
     "w-goods": "/components/common/w-goods/w-goods",
+    "w-back-top": "/components/common/w-back-top/w-back-top",
     
     "w-recommend": "/pages/home/childCpns/w-recommend/w-recommend"
   },
